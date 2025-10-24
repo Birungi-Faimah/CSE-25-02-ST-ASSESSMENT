@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { type } = require('os');
 const formSchema = new mongoose.Schema({
   productName: {
     type: String,
@@ -20,8 +21,17 @@ const formSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
+  image:{
+    type: String,
+    trim: true,
+  },
+  color: {
+    type: String,
+    trim: true,
+
+  },
   
 });
 const Form = mongoose.model('Form', formSchema);
 
-module.exports = mongoose.model('Form', FormSchema);
+module.exports = mongoose.model('Form', formSchema);

@@ -19,15 +19,15 @@ router.get("/", (req, res) =>{
     
  router.post("/", async (req, res) => {
   try {
-    const user = new Signup(req.body);
-    let existingUser = await Signup.findOne({ 
+    const form = new Form(req.body);
+    let existingForm = await Form.findOne({ 
       email: req.body.email
      });
 
     if (existingUser) {
       return res.status(400).send("");
     } else {
-      await Signup.register(user, req.body.password, (error) => {
+      await Form.register(product, req.body.password, (error) => {
         if(error) {
           throw error;
         }
@@ -57,14 +57,14 @@ router.post("/",
    passport.authenticate("", {failureRedirect: "/form"}),
    (req,res) =>{
    console.log(req.body);
-   req.session.user =req.user;
-   if(req.user.role ===""){
+   req.session.form =req.form;
+   if(req.form.role ===""){
        res.redirect("/");
    }
-   else if(req.user.role ===""){
+   else if(req.form.role ===""){
        res.redirect("/")
    }
-   else if(req.user.role ===""){
+   else if(req.form.role ===""){
        res.redirect("/");
    }else{
        res.send("")
