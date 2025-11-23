@@ -3,6 +3,11 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/AddProduct');
 
+// Homepage route - redirect to addproduct
+router.get('/', (req, res) => {
+  res.redirect('/addproduct');
+});
+
 router.get('/addproduct', async (req, res) => {
   const products = await Product.find();
   res.render('addProduct', { products });
