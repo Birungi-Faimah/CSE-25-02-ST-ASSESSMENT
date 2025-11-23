@@ -47,11 +47,11 @@ function validateForm() {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.success) {
+      if (data.message && data.message.includes('successfully')) {
         const successMessageElement = document.getElementById('successMessage');
         successMessageElement.textContent = 'Product added successfully!';
         successMessageElement.classList.add('success-message'); // Add the success class dynamically
-        addProductToTable(data.product);
+        addProductToTable(data.product || {}); // Handle case where product might not be returned
         clearForm();
       } else {
         alert('Error: ' + data.message);
